@@ -12,7 +12,7 @@ send_webhook() {
 send_webhook ":rocket: Starting Test 01: Hashcat CPU (1 threads), Dictionary mode"
 
 echo "Running Test 01: Hashcat CPU (1 threads), Dictionary mode"
-OUTFILE="test01_results.txt"
+OUTFILE="results/test01_results.txt"
 
 echo "[*] Cracking WEAK passwords..." | tee -a "$OUTFILE"
 send_webhook "[*] Cracking WEAK passwords..."
