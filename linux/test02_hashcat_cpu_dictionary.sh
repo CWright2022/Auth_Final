@@ -9,15 +9,15 @@ send_webhook() {
          "$WEBHOOK"
 }
 
-send_webhook ":rocket: Starting Test 08: Hashcat CPU (4 threads), Bruteforce mode"
+send_webhook ":rocket: Starting Test 03: Hashcat CPU (2 threads), Dictionary mode"
 
-echo "Running Test 08: Hashcat CPU (4 threads), Bruteforce mode"
-OUTFILE="test08_results.txt"
+echo "Running Test 03: Hashcat CPU (2 threads), Dictionary mode"
+OUTFILE="test03_results.txt"
 
 echo "[*] Cracking WEAK passwords..." | tee -a "$OUTFILE"
 send_webhook "[*] Cracking WEAK passwords..."
 START=$(date +%s)
-hashcat -m 1400 -a 3 -O --force --opencl-device-types 1  --cpu-affinity=4 hashes_weak.txt '?a?a?a?a?a?a'
+./hashcat/hashcat -m 1400 -a 0 -O --force --opencl-device-types 1  --cpu-affinity=4 hashes/hashes_weak.txt realhuman_phill.txt
 END=$(date +%s)
 echo "WEAK time: $((END - START)) seconds" | tee -a "$OUTFILE"
 send_webhook "WEAK time: $((END - START)) seconds"
@@ -25,7 +25,7 @@ send_webhook "WEAK time: $((END - START)) seconds"
 echo "[*] Cracking MEDIUM passwords..." | tee -a "$OUTFILE"
 send_webhook "[*] Cracking MEDIUM passwords..."
 START=$(date +%s)
-hashcat -m 1400 -a 3 -O --force --opencl-device-types 1  --cpu-affinity=4 hashes_medium.txt '?a?a?a?a?a?a'
+./hashcat/hashcat -m 1400 -a 0 -O --force --opencl-device-types 1  --cpu-affinity=4 hashes/hashes_medium.txt realhuman_phill.txt
 END=$(date +%s)
 echo "MEDIUM time: $((END - START)) seconds" | tee -a "$OUTFILE"
 send_webhook "MEDIUM time: $((END - START)) seconds"
@@ -33,10 +33,10 @@ send_webhook "MEDIUM time: $((END - START)) seconds"
 echo "[*] Cracking STRONG passwords..." | tee -a "$OUTFILE"
 send_webhook "[*] Cracking STRONG passwords..."
 START=$(date +%s)
-hashcat -m 1400 -a 3 -O --force --opencl-device-types 1  --cpu-affinity=4 hashes_strong.txt '?a?a?a?a?a?a'
+./hashcat/hashcat -m 1400 -a 0 -O --force --opencl-device-types 1  --cpu-affinity=4 hashes/hashes_strong.txt realhuman_phill.txt
 END=$(date +%s)
 echo "STRONG time: $((END - START)) seconds" | tee -a "$OUTFILE"
 send_webhook "STRONG time: $((END - START)) seconds"
 
 
-send_webhook ":white_check_mark: Test 08 complete! Check output file for time breakdown."
+send_webhook ":white_check_mark: Test 03 complete! Check output file for time breakdown."
