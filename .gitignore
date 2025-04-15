@@ -1,2 +1,6 @@
 rockyou.txt
 realhuman_phill.txt
+hashcat/
+hashcat.exe
+results/*
+john/
