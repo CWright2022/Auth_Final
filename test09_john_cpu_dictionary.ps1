@@ -4,62 +4,37 @@ function Send-DiscordMessage($message) {
     Invoke-RestMethod -Uri $webhook -Method Post -Body (@{content = $message} | ConvertTo-Json) -ContentType 'application/json'
 }
 Send-DiscordMessage ":rocket: Starting test09: John CPU (8 threads), Dictionary mode"
-$OutputFile = "test09_results.txt"
+$OutputFile = "results/test09_results.txt"
 "" | Out-File -FilePath $OutputFile
 
 Send-DiscordMessage ":hourglass: Starting Weak hashes"
-Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
-Remove-Item -ErrorAction SilentlyContinue $env:TEMP\test09_Weak_temp.txt
+Remove-Item -ErrorAction SilentlyContinue john/run/john.pot
+
 $startTime = Get-Date
-Push-Location "$PSScriptRoot\..\john"
-cmd /c "john.exe --format=raw-sha256 --wordlist=..\rockyou.txt --fork=8 ..\hashes_weak.txt" | Tee-Object -FilePath $env:TEMP\test09_Weak_temp.txt
-Pop-Location
-Get-Content $env:TEMP\test09_Weak_temp.txt | Add-Content $OutputFile
-$recoveredLine = Select-String -Path $env:TEMP\test09_Weak_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
-if ($recoveredLine) {
-    $lineText = $recoveredLine.ToString().Trim()
-    Send-DiscordMessage ":lock_with_ink_pen: [Weak] $lineText"
-} else {
-    Send-DiscordMessage ":warning: [Weak] Could not find recovery stats."
-}
+
+cmd /c "cd john/run && john.exe --format=raw-sha256 --wordlist=..\..\realhuman_phill.txt --fork=8 ..\..\hashes\hashes_weak.txt" | Tee-Object -FilePath $OutputFile
+
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
 Send-DiscordMessage ":white_check_mark: Finished Weak in $($elapsed) seconds."
 
 Send-DiscordMessage ":hourglass: Starting Medium hashes"
-Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
-Remove-Item -ErrorAction SilentlyContinue $env:TEMP\test09_Medium_temp.txt
+Remove-Item -ErrorAction SilentlyContinue john/run/john.pot
+
 $startTime = Get-Date
-Push-Location "$PSScriptRoot\..\john"
-cmd /c "john.exe --format=raw-sha256 --wordlist=..\rockyou.txt --fork=8 ..\hashes_medium.txt" | Tee-Object -FilePath $env:TEMP\test09_Medium_temp.txt
-Pop-Location
-Get-Content $env:TEMP\test09_Medium_temp.txt | Add-Content $OutputFile
-$recoveredLine = Select-String -Path $env:TEMP\test09_Medium_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
-if ($recoveredLine) {
-    $lineText = $recoveredLine.ToString().Trim()
-    Send-DiscordMessage ":lock_with_ink_pen: [Medium] $lineText"
-} else {
-    Send-DiscordMessage ":warning: [Medium] Could not find recovery stats."
-}
+
+cmd /c "cd john/run && john.exe --format=raw-sha256 --wordlist=..\..\realhuman_phill.txt --fork=8 ..\..\hashes\hashes_medium.txt" | Tee-Object -FilePath $OutputFile
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
 Send-DiscordMessage ":white_check_mark: Finished Medium in $($elapsed) seconds."
 
 Send-DiscordMessage ":hourglass: Starting Strong hashes"
-Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
-Remove-Item -ErrorAction SilentlyContinue $env:TEMP\test09_Strong_temp.txt
+Remove-Item -ErrorAction SilentlyContinue john/run/john.pot
+
 $startTime = Get-Date
-Push-Location "$PSScriptRoot\..\john"
-cmd /c "john.exe --format=raw-sha256 --wordlist=..\rockyou.txt --fork=8 ..\hashes_strong.txt" | Tee-Object -FilePath $env:TEMP\test09_Strong_temp.txt
-Pop-Location
-Get-Content $env:TEMP\test09_Strong_temp.txt | Add-Content $OutputFile
-$recoveredLine = Select-String -Path $env:TEMP\test09_Strong_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
-if ($recoveredLine) {
-    $lineText = $recoveredLine.ToString().Trim()
-    Send-DiscordMessage ":lock_with_ink_pen: [Strong] $lineText"
-} else {
-    Send-DiscordMessage ":warning: [Strong] Could not find recovery stats."
-}
+
+cmd /c "cd john/run && john.exe --format=raw-sha256 --wordlist=..\..\realhuman_phill.txt --fork=8 ..\..\hashes\hashes_strong.txt" | Tee-Object -FilePath $OutputFile
+
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
 Send-DiscordMessage ":white_check_mark: Finished Strong in $($elapsed) seconds."
