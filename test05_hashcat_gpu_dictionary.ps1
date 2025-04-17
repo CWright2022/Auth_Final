@@ -12,10 +12,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable   ..\hashes\hashes_weak.txt ..\realuniq.lst -O" | Tee-Object -FilePath $env:TEMP\test05_Weak_temp.txt
-
-
-$recoveredLine = Select-String -Path $env:TEMP\test05_Weak_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable   ..\hashes\hashes_weak.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile
 
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
@@ -26,10 +23,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable   ..\hashes\hashes_medium.txt ..\realuniq.lst -O" | Tee-Object -FilePath $env:TEMP\test05_Medium_temp.txt
-
-
-$recoveredLine = Select-String -Path $env:TEMP\test05_Medium_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable   ..\hashes\hashes_medium.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile
 
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
@@ -40,10 +34,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable   ..\hashes\hashes_strong.txt ..\realuniq.lst -O" | Tee-Object -FilePath $env:TEMP\test05_Strong_temp.txt
-
-
-$recoveredLine = Select-String -Path $env:TEMP\test05_Strong_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable   ..\hashes\hashes_strong.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile
 
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds

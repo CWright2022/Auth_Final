@@ -12,7 +12,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=2 ..\hashes\hashes_weak.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile -Append
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=1,2 ..\hashes\hashes_weak.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile -Append
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
 Send-DiscordMessage ":white_check_mark: Finished Weak in $($elapsed) seconds."
@@ -20,7 +20,7 @@ Send-DiscordMessage ":white_check_mark: Finished Weak in $($elapsed) seconds."
 Send-DiscordMessage ":hourglass: Starting Medium hashes"
 Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 $startTime = Get-Date
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=2 ..\hashes\hashes_medium.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile -Append
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=1,2 ..\hashes\hashes_medium.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile -Append
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
 Send-DiscordMessage ":white_check_mark: Finished Medium in $($elapsed) seconds."
@@ -30,7 +30,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=2 ..\hashes\hashes_strong.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile -Append
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=1,2 ..\hashes\hashes_strong.txt ..\realuniq.lst -O" | Tee-Object -FilePath $OutputFile -Append
 
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds

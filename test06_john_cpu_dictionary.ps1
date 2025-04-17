@@ -13,6 +13,7 @@ Send-DiscordMessage ":hourglass: Starting Weak hashes"
 Remove-Item -ErrorAction SilentlyContinue john/run/john.pot
 $startTime = Get-Date
 cmd /c "cd john/run && john.exe --format=raw-sha256 --wordlist=..\..\realuniq.lst --fork=2 ..\..\hashes\hashes_weak.txt" | Tee-Object -FilePath $OutputFile
+cmd /c "cd john/run && john.exe --show --format=raw-sha256 ..\..\hashes\hashes_weak.txt" | Tee-Object -FilePath $OutputFile
 
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
@@ -23,6 +24,7 @@ Remove-Item -ErrorAction SilentlyContinue john/run/john.pot
 $startTime = Get-Date
 
 cmd /c "cd john/run && john.exe --format=raw-sha256 --wordlist=..\..\realuniq.lst --fork=2 ..\..\hashes\hashes_medium.txt" | Tee-Object -FilePath $OutputFile
+cmd /c "cd john/run && john.exe --show --format=raw-sha256 ..\..\hashes\hashes_medium.txt" | Tee-Object -FilePath $OutputFile
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
 Send-DiscordMessage ":white_check_mark: Finished Medium in $($elapsed) seconds."
@@ -32,6 +34,7 @@ Remove-Item -ErrorAction SilentlyContinue john/run/john.pot
 $startTime = Get-Date
 
 cmd /c "cd john/run && john.exe --format=raw-sha256 --wordlist=..\..\realuniq.lst --fork=2 ..\..\hashes\hashes_strong.txt" | Tee-Object -FilePath $OutputFile
+cmd /c "cd john/run && john.exe --show --format=raw-sha256 ..\..\hashes\hashes_strong.txt" | Tee-Object -FilePath $OutputFile
 
 $endTime = Get-Date
 $elapsed = ($endTime - $startTime).TotalSeconds
