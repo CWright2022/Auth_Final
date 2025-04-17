@@ -12,7 +12,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=4 ..\hashes\hashes_weak.txt ..\realhuman_phill.txt -O" | Tee-Object -FilePath $env:TEMP\test02_Weak_temp.txt
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=4 ..\hashes\hashes_weak.txt ..\realuniq.lst -O" | Tee-Object -FilePath $env:TEMP\test02_Weak_temp.txt
 
 
 $recoveredLine = Select-String -Path $env:TEMP\test02_Weak_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
@@ -26,7 +26,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=4 ..\hashes\hashes_medium.txt ..\realhuman_phill.txt -O" | Tee-Object -FilePath $env:TEMP\test02_Medium_temp.txt
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=4 ..\hashes\hashes_medium.txt ..\realuniq.lst -O" | Tee-Object -FilePath $env:TEMP\test02_Medium_temp.txt
 
 
 $recoveredLine = Select-String -Path $env:TEMP\test02_Medium_temp.txt -Pattern "^Recovered" | Select-Object -Last 1
@@ -40,7 +40,7 @@ Remove-Item -ErrorAction SilentlyContinue hashcat.potfile
 
 $startTime = Get-Date
 
-cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=4 ..\hashes\hashes_strong.txt ..\realhuman_phill.txt -O" | Tee-Object -FilePath $env:TEMP\test02_Strong_temp.txt
+cmd /c "cd hashcat && hashcat.exe -m 1400 -a 0 --potfile-disable --opencl-device-types 1 --cpu-affinity=4 ..\hashes\hashes_strong.txt ..\realuniq.lst -O" | Tee-Object -FilePath $env:TEMP\test02_Strong_temp.txt
 
 
 $recoveredLine = Select-String -Path $env:TEMP\test02_Strong_temp.txt -Pattern "^Recovered" | Select-Object -Last 1

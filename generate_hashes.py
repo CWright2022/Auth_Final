@@ -3,7 +3,7 @@ import hashlib
 # --- Define password categories (expanded with passphrases) ---
 
 weak_passwords = [
-    "123456", "password", "123123", "qwerty", "abc123", "111111", "letmein", "welcome", "monkey", "iloveyou000000", "pass123", "hello123", "1q2w3e", "654321", "admin", "shadow", "trustno1", "dragon", "princesssunshine", "football", "baseball", "michael", "jordan", "hunter", "soccer", "batman", "superman", "qazwsxasdfgh", "zxcvbn", "1qaz2wsx", "passw0rd", "guest", "love123", "charlie", "buster", "pepper", "tigercheese", "computer", "mobile", "secret", "naruto", "pokemon", "blink182", "iloveu", "test1234", "killer123abc", "321321", "qwertyui", "asdf1234", "coffee", "flower", "google", "nothing", "dolphin", "sparklehappy123", "12qwaszx", "login123", "user1", "letmein1", "passcode", "phone123", "camera123", "basicpass", "nopassword", "tryagain", "access", "mypass", "winter", "summer", "friday", "thursday", "blue123", "red456", "star789apple123", "banana1", "grapes22", "fruit123", "password1", "hacker", "unknown", "welcome1", "passme", "777777ilikecats", "ilikedogs", "abcdefg", "onetwothree", "dog123", "cat456", "fish789", "laptop123", "printer1", "justme"
+    "123456", "password", "123123", "qwerty", "abc123", "111111", "letmein", "welcome", "monkey", "iloveyou000000", "pass123", "hello123", "1q2w3e", "654321", "admin", "shadow", "trustno1", "dragon", "princesssunshine", "football", "baseball", "michael", "jordan", "hunter", "soccer", "batman", "superman", "qazwsxasdfgh", "zxcvbn", "1qaz2wsx", "passw0rd", "guest", "love123", "charlie", "buster", "pepper", "tigercheese", "computer", "mobile", "secret", "naruto", "pokemon", "blink182", "iloveu", "test1234", "killer123abc", "321321", "qwertyui", "asdf1234", "coffee", "flower", "google", "nothing", "dolphin", "sparklehappy123", "12qwaszx", "login123", "user1", "letmein1", "passcode", "phone123", "camera123", "basicpass", "nopassword", "tryagain", "access", "mypass", "winter", "summer", "friday", "thursday", "blue123", "red456", "star789apple123", "banana1", "grapes22", "fruit123", "password1", "hacker", "unknown", "welcome1", "passme", "777777ilikecats", "ilikedogs", "abcdefg", "onetwothree", "dog123", "cat456", "fish789", "laptop123", "printer1", "justme", "wrongpassword"
 ]
 
 medium_passwords = [
@@ -50,3 +50,10 @@ for password in all_passwords:
 
 print(f"MAX LENGTH: {max_length}")
 print(f"MIN LENGTH: {min_length}")
+
+weak_count = len(weak_passwords)
+medium_count = len(medium_passwords)
+strong_count = len(strong_passwords)
+print(f"weak: {weak_count}")
+print(f"medium: {medium_count}")
+print(f"strong: {strong_count}")
